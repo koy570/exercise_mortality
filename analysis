@@ -1,0 +1,57 @@
+import matplotlib.pyplot as plt
+import pandas as pd
+
+# Data for visualization
+data_gender = {
+    "Gender": ["Women", "Men"],
+    "All-Cause Mortality Reduction (%)": [12, 3],
+    "CVD Mortality Reduction (%)": [16, 4],
+    "Cancer Mortality Reduction (%)": [9, 4]
+}
+
+data_combined = {
+    "Exercise Type": ["Weight Training Only", "Aerobic Exercise Only", "Combined Exercise"],
+    "All-Cause Mortality Reduction (%)": [6, 20, 27],
+    "CVD Mortality Reduction (%)": [8, 22, 30],
+    "Cancer Mortality Reduction (%)": [5, 18, 23]
+}
+
+# Create DataFrames
+df_gender = pd.DataFrame(data_gender)
+df_combined = pd.DataFrame(data_combined)
+
+# Bar Chart 1: Mortality Reduction by Gender
+plt.figure(figsize=(10, 6))
+bar_width = 0.25
+x = range(len(df_gender["Gender"]))
+
+plt.bar(x, df_gender["All-Cause Mortality Reduction (%)"], width=bar_width, label="All-Cause Mortality")
+plt.bar([p + bar_width for p in x], df_gender["CVD Mortality Reduction (%)"], width=bar_width, label="CVD Mortality")
+plt.bar([p + 2 * bar_width for p in x], df_gender["Cancer Mortality Reduction (%)"], width=bar_width, label="Cancer Mortality")
+
+plt.title("Mortality Reduction by Gender and Type", fontsize=16)
+plt.xlabel("Gender", fontsize=14)
+plt.ylabel("Mortality Reduction (%)", fontsize=14)
+plt.xticks([p + bar_width for p in x], df_gender["Gender"], fontsize=12)
+plt.legend(fontsize=12)
+plt.grid(axis='y', linestyle='--', alpha=0.6)
+plt.tight_layout()
+plt.show()
+
+# Bar Chart 2: Combined Exercise Effects
+plt.figure(figsize=(10, 6))
+bar_width = 0.25
+x = range(len(df_combined["Exercise Type"]))
+
+plt.bar(x, df_combined["All-Cause Mortality Reduction (%)"], width=bar_width, label="All-Cause Mortality")
+plt.bar([p + bar_width for p in x], df_combined["CVD Mortality Reduction (%)"], width=bar_width, label="CVD Mortality")
+plt.bar([p + 2 * bar_width for p in x], df_combined["Cancer Mortality Reduction (%)"], width=bar_width, label="Cancer Mortality")
+
+plt.title("Mortality Reduction by Exercise Type", fontsize=16)
+plt.xlabel("Exercise Type", fontsize=14)
+plt.ylabel("Mortality Reduction (%)", fontsize=14)
+plt.xticks([p + bar_width for p in x], df_combined["Exercise Type"], fontsize=12)
+plt.legend(fontsize=12)
+plt.grid(axis='y', linestyle='--', alpha=0.6)
+plt.tight_layout()
+plt.show()
